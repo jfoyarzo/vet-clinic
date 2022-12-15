@@ -40,3 +40,39 @@ SELECT AVG(weight_kg) FROM animals;
 SELECT neutered, AVG(escape_attempts) FROM animals GROUP BY neutered;
 SELECT species, MIN(weight_kg), MAX(weight_kg) FROM animals GROUP BY species;
 SELECT species, AVG(escape_attempts) FROM animals WHERE date_of_birth BETWEEN '1990-01-01' AND '2000-12-31' GROUP BY species;
+
+SELECT name, full_name as owner
+FROM animals A 
+JOIN owners O ON A.owner_id = O.id
+WHERE full_name = 'Melody Pond';
+
+SELECT A.name, S.name as species
+FROM animals A 
+JOIN species S ON A.species_id = S.id
+WHERE species_id = 1;
+
+SELECT full_name, A.name as pet
+FROM owners O
+LEFT JOIN animals A ON O.id = A.owner_id;
+
+SELECT COUNT(*), S.name
+FROM animals A
+JOIN species S ON A.species_id = S.id
+GROUP BY S.name;
+
+SELECT A.name, O.full_name as owner, S.name as species
+FROM animals A
+JOIN owners O ON A.species_id = S.id
+WHERE O.full_name = 'Jennifer Orwell' AND S.id = 2;
+
+SELECT A.name, O.full_name as owner, A.escape_attempts
+FROM animals A
+JOIN owners O ON A.owner_id = O.id
+WHERE O.full_name = 'Dean Winchester' AND A.escape_attempts = 0;
+
+SELECT COUNT(*) as number_of_pets, O.full_name 
+FROM animals A 
+JOIN owners O ON A.owner_id = O.id 
+GROUP BY O.full_name
+ORDER BY number_of_pets DESC
+LIMIT 1;
