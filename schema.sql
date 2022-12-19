@@ -63,3 +63,5 @@ CREATE TABLE visits (
  FOREIGN KEY (vet_id) REFERENCES vets (id),
  PRIMARY KEY (pet_id, vet_id, date_of_visit)
 );
+
+CREATE INDEX pet_id_asc ON visits(pet_id ASC);
