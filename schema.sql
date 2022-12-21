@@ -64,4 +64,7 @@ CREATE TABLE visits (
  PRIMARY KEY (pet_id, vet_id, date_of_visit)
 );
 
-CREATE INDEX pet_id_asc ON visits(pet_id ASC);
+-- Performance Aduit starts here
+
+-- Add an email column to your owners table
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
