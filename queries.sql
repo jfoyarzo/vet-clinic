@@ -133,3 +133,9 @@ WHERE visits.vet_id = 2
 GROUP BY S.name
 ORDER BY number_of_visits DESC
 LIMIT 1;
+-- Performance audit starts here
+explain analyze SELECT COUNT(*) FROM visits where pet_id = 4;
+
+explain analyze SELECT COUNT(*) FROM visits where pet_id = 2;
+
+explain analyze SELECT COUNT(*) FROM owners where email='owner_18327@mail.com';
